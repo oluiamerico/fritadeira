@@ -170,6 +170,10 @@ body {
 .price { font-size: 2.5rem; font-weight: 700; color: var(--worten-red); display: flex; align-items: flex-start; line-height: 1;}
 .price .currency { font-size: 1.5rem; margin-top: 2px; }
 .price .cents { font-size: 1.25rem; margin-top: 2px; }
+.old-price { display: flex; align-items: flex-start; line-height: 1; color: #999; font-size: 1.4rem; font-weight: 500; text-decoration: line-through; margin-bottom: 4px; }
+.old-price .currency { font-size: 0.9rem; margin-top: 2px; }
+.old-price .cents { font-size: 0.85rem; margin-top: 2px; }
+.sticky-prices { display: flex; flex-direction: column; justify-content: center; }
 
 /* Cards & Moduls */
 .card { border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; margin-bottom: 16px; background-color: white; }

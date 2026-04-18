@@ -3,8 +3,11 @@ import React from 'react';
 export const PricingActions = () => (
     <div className="content-padding">
         <div className="price-section">
-            <div className="price">
+            <div className="old-price">
                 <span className="currency">€</span>199,<span className="cents">99</span>
+            </div>
+            <div className="price">
+                <span className="currency">€</span>69,<span className="cents">90</span>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 export const Cart = ({ navigate }) => {
     const [quantity, setQuantity] = useState(1);
-    const productPrice = 199.99;
+    const productPrice = 69.90;
     const insurancePrice = 32.99;
 
     const subtotal = (productPrice * quantity) + insurancePrice;
@@ -27,7 +27,10 @@ export const Cart = ({ navigate }) => {
                             Fritadeira sem Óleo PHILIPS NA352/00 Dua Serie 3000 (9 L - Cinzento-carvão/Cobre)
                         </h2>
                         <div className="cart-item-price">
-                            <span className="currency">€</span>199,<span className="cents">99</span>
+                            <div className="old-price" style={{fontSize: '1rem'}}>
+                                <span className="currency" style={{fontSize: '0.75rem'}}>€</span>199,<span className="cents" style={{fontSize: '0.75rem'}}>99</span>
+                            </div>
+                            <span className="currency">€</span>69,<span className="cents">90</span>
                         </div>
                         <div className="cart-item-vendor">
                             Vendido por: <strong>WORTEN</strong>

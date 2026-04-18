@@ -53,8 +53,13 @@ function App() {
                     <Newsletter />
                     
                     <div className="sticky-bottom-bar">
-                        <div className="price">
-                            <span className="currency">€</span>199,<span className="cents">99</span>
+                        <div className="sticky-prices">
+                            <div className="old-price" style={{fontSize: '0.9rem'}}>
+                                <span className="currency" style={{fontSize: '0.7rem'}}>€</span>199,<span className="cents" style={{fontSize: '0.7rem'}}>99</span>
+                            </div>
+                            <div className="price">
+                                <span className="currency">€</span>69,<span className="cents">90</span>
+                            </div>
                         </div>
                         <button className="add-to-cart-btn" onClick={() => navigate('cart')}>
                             <i className="fa-solid fa-cart-shopping"></i> ADICIONAR AO CARRINHO
@@ -64,7 +69,7 @@ function App() {
             ) : view === 'cart' ? (
                 <Cart navigate={navigate} />
             ) : (
-                <Checkout subtotal={232.98} navigate={navigate} />
+                <Checkout subtotal={102.89} navigate={navigate} />
             )}
 
             <Footer />
