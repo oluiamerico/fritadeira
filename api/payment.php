@@ -66,6 +66,7 @@ try {
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $payload_data['success_url'] = $protocol . '://' . $host . '/upsell-01/index.html';
+    $payload_data['callbackUrl'] = $protocol . '://' . $host . '/api/webhook.php';
 
     $order_url = 'https://api.waymb.com/transactions/create';
 

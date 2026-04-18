@@ -173,6 +173,19 @@ export const Checkout = ({ subtotal, navigate }) => {
                     setPaymentResponse(data.data);
                     setIsSuccess(true);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                    // Utmify — evento de compra (pedido criado com sucesso)
+                    try {
+                        const transactionId = data.data?.transactionID || data.data?.id || '';
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            event: 'Purchase',
+                            value: subtotal,
+                            currency: 'EUR',
+                            transaction_id: transactionId,
+                            payment_method: formData.paymentMethod,
+                        });
+                    } catch (_) {}
                 } else {
                     setPaymentError(data.error || 'Erro ao processar pagamento.');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
