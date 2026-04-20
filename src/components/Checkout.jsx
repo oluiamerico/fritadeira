@@ -395,6 +395,10 @@ export const Checkout = ({ subtotal, navigate }) => {
                             <span>€{subtotal.toFixed(2).replace('.', ',')}</span>
                         </div>
                         <div className="summary-row">
+                            <span>Garantia 1 Ano</span>
+                            <span className="green-text">Incluída</span>
+                        </div>
+                        <div className="summary-row">
                             <span>Portes</span>
                             <span className="green-text">Grátis</span>
                         </div>

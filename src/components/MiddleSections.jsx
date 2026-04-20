@@ -10,7 +10,7 @@ export const PricingActions = () => (
     </div>
 );
 
-export const PurchasingOptions = ({ onOpenReturnModal, onOpenTechModal }) => (
+export const PurchasingOptions = ({ onOpenModal, onOpenReturnModal, onOpenTechModal, selectedWarranty, onRemoveWarranty }) => (
     <div className="content-padding pt-0">
         <div className="delivery-options card">
             <div className="option-header">
@@ -42,7 +42,15 @@ export const PurchasingOptions = ({ onOpenReturnModal, onOpenTechModal }) => (
             </div>
         </div>
 
-
+        <div className="warranty-card card blue-tint" style={{display: 'flex', alignItems: 'center', gap: '15px', padding: '15px'}}>
+            <i className="fa-solid fa-shield-halved" style={{fontSize: '30px', color: '#005ca9'}}></i>
+            <div style={{flex: 1}}>
+                <div className="display-flex" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <h4 style={{margin: '0', color: '#111', fontSize: '1.05rem'}}>1 Ano de Garantia</h4>
+                </div>
+                <p style={{margin: '4px 0 0', color: '#555', fontSize: '0.85rem', lineHeight: '1.3'}}>Sua compra está totalmente protegida por 1 ano sem custos adicionais.</p>
+            </div>
+        </div>
 
         <div className="seller-card">
 
@@ -56,25 +64,8 @@ export const PurchasingOptions = ({ onOpenReturnModal, onOpenTechModal }) => (
                     <button className="link bg-transparent border-none p-0 cursor-pointer" onClick={onOpenReturnModal}>Saber mais</button>
                 </div>
             </div>
-            <div className="other-offers pt-0">
-
-                <h3>Ver outras ofertas</h3>
-                <p>Vendido por <a href="#" className="link-dark underline">+38 vendedores</a> desde <strong>€153,73</strong></p>
-            </div>
         </div>
 
-        <div className="payment-card border-tb">
-            <div className="universo-logo">
-                <strong><span style={{color:'#1e3a8a'}}>u</span>niverso.</strong>
-            </div>
-            <div className="payment-flex">
-                <div className="payment-info">
-                    <h4>Paga em prestações desde</h4>
-                    <p><span className="red-text">€50,00/mês</span> em 4 meses sem juros</p>
-                </div>
-                <button className="btn-outline-red">SABE MAIS</button>
-            </div>
-        </div>
 
         <div className="accordion-section border-tb mt-0" style={{marginTop: "16px"}}>
             <div className="accordion-header cursor-pointer" onClick={onOpenTechModal}>
