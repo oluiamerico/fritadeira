@@ -36,12 +36,12 @@ function App() {
     return (
         <div className="app-container">
             <Header onNavigate={navigate} />
-            
+
             {view === 'product' ? (
                 <>
                     <ProductCore />
                     <PricingActions />
-                    <PurchasingOptions 
+                    <PurchasingOptions
                         onOpenModal={() => setIsWarrantyModalOpen(true)}
                         onOpenReturnModal={() => setIsReturnModalOpen(true)}
                         onOpenTechModal={() => setIsTechModalOpen(true)}
@@ -51,15 +51,10 @@ function App() {
                     <ExpertHighlights />
                     <ReviewsSection />
                     <Newsletter />
-                    
+
                     <div className="sticky-bottom-bar">
-                        <div className="sticky-prices">
-                            <div className="old-price" style={{fontSize: '0.9rem'}}>
-                                <span className="currency" style={{fontSize: '0.7rem'}}>€</span>199,<span className="cents" style={{fontSize: '0.7rem'}}>99</span>
-                            </div>
-                            <div className="price">
-                                <span className="currency">€</span>69,<span className="cents">90</span>
-                            </div>
+                        <div className="price">
+                            <span className="currency">€</span>69,<span className="cents">90</span>
                         </div>
                         <button className="add-to-cart-btn" onClick={() => navigate('cart')}>
                             <i className="fa-solid fa-cart-shopping"></i> ADICIONAR AO CARRINHO
@@ -67,32 +62,35 @@ function App() {
                     </div>
                 </>
             ) : view === 'cart' ? (
-                <Cart navigate={navigate} />
+                <Cart navigate={navigate} selectedWarranty={selectedWarranty} setSelectedWarranty={setSelectedWarranty} />
             ) : (
-                <Checkout subtotal={102.89} navigate={navigate} />
+                <Checkout
+                    subtotal={69.90 + (selectedWarranty ? parseFloat(`${selectedWarranty.price}.${selectedWarranty.cents}`) : 0)}
+                    navigate={navigate}
+                />
             )}
 
             <Footer />
 
-            <WarrantyModal 
+            <WarrantyModal
                 isOpen={isWarrantyModalOpen}
                 onClose={() => setIsWarrantyModalOpen(false)}
                 selectedPlan={selectedWarranty}
                 onSelectPlan={setSelectedWarranty}
             />
 
-            <ReturnModal 
+            <ReturnModal
                 isOpen={isReturnModalOpen}
                 onClose={() => setIsReturnModalOpen(false)}
             />
 
-            <TechModal 
+            <TechModal
                 isOpen={isTechModalOpen}
                 onClose={() => setIsTechModalOpen(false)}
             />
 
-            <button 
-                id="scrollToTop" 
+            <button
+                id="scrollToTop"
                 className="scroll-to-top"
                 onClick={scrollToTop}
                 style={{ display: (view === 'product' && showScrollTop) ? 'flex' : 'none' }}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-export const Cart = ({ navigate }) => {
+export const Cart = ({ navigate, selectedWarranty, setSelectedWarranty }) => {
     const [quantity, setQuantity] = useState(1);
     const productPrice = 69.90;
-    const insurancePrice = 32.99;
+    const insurancePrice = selectedWarranty ? parseFloat(`${selectedWarranty.price}.${selectedWarranty.cents}`) : 0;
 
     const subtotal = (productPrice * quantity) + insurancePrice;
 
@@ -13,7 +13,7 @@ export const Cart = ({ navigate }) => {
     return (
         <div className="cart-page">
             <header className="cart-header">
-                <h1>O meu carrinho <span>({quantity + 1} artigos)</span></h1>
+                <h1>O meu carrinho <span>({quantity + (selectedWarranty ? 1 : 0)} artigos)</span></h1>
             </header>
 
             <section className="cart-items-list">
@@ -27,9 +27,6 @@ export const Cart = ({ navigate }) => {
                             Fritadeira sem Óleo PHILIPS NA352/00 Dua Serie 3000 (9 L - Cinzento-carvão/Cobre)
                         </h2>
                         <div className="cart-item-price">
-                            <div className="old-price" style={{fontSize: '1rem'}}>
-                                <span className="currency" style={{fontSize: '0.75rem'}}>€</span>199,<span className="cents" style={{fontSize: '0.75rem'}}>99</span>
-                            </div>
                             <span className="currency">€</span>69,<span className="cents">90</span>
                         </div>
                         <div className="cart-item-vendor">
@@ -58,19 +55,21 @@ export const Cart = ({ navigate }) => {
                 </div>
 
                 {/* Service Item (Worten Resolve) */}
-                <div className="worten-resolve-section">
-                    <div className="resolve-logo">
-                        <strong style={{color: '#2856e1', fontSize: '1.2rem'}}>worten</strong>
-                        <span style={{color: '#2856e1', fontSize: '1.2rem'}}>resolve</span>
-                    </div>
-                    <div className="resolve-row">
-                        <div className="resolve-info">
-                            Seguro Garantia: +3 anos de proteção contra avarias após a garantia de fabricante
-                            <div className="resolve-price">€32,99</div>
+                {selectedWarranty && (
+                    <div className="worten-resolve-section">
+                        <div className="resolve-logo">
+                            <strong style={{color: '#2856e1', fontSize: '1.2rem'}}>worten</strong>
+                            <span style={{color: '#2856e1', fontSize: '1.2rem'}}>resolve</span>
                         </div>
-                        <a href="#" className="alter-link">Alterar</a>
+                        <div className="resolve-row">
+                            <div className="resolve-info">
+                                {selectedWarranty.title.includes('Seguro') ? 'Seguro' : 'Seguro Garantia'}: {selectedWarranty.title.replace('+ ', '')}
+                                <div className="resolve-price">€{selectedWarranty.price},{selectedWarranty.cents}</div>
+                            </div>
+                            <a href="#" className="alter-link" onClick={(e) => { e.preventDefault(); setSelectedWarranty(null); }}>Remover</a>
+                        </div>
                     </div>
-                </div>
+                )}
             </section>
 
             <section className="order-summary">

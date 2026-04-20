@@ -6,7 +6,7 @@ export const WarrantyModal = ({ isOpen, onClose, selectedPlan, onSelectPlan }) =
     if (!isOpen) return null;
 
     const garantiaPlans = [
-        { id: '3years', title: '+ 3 anos garantia', price: '32', cents: '99', fullPrice: '€32,99' },
+        { id: '3years', title: '+ 3 anos garantia', price: '32', cents: '90', fullPrice: '€32,90' },
         { id: '1year', title: '+ 1 ano garantia', price: '15', cents: '99', fullPrice: '€15,99' }
     ];
 
