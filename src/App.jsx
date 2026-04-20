@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Header, ProductCore, ExpertHighlights } from './components/TopSections';
 import { PricingActions, PurchasingOptions, ReviewsSection } from './components/MiddleSections';
 import { Newsletter, Footer } from './components/BottomSections';
-import { WarrantyModal } from './components/WarrantyModal';
+
 import { ReturnModal } from './components/ReturnModal';
 import { TechModal } from './components/TechModal';
 import { Cart } from './components/Cart';
@@ -11,10 +11,8 @@ import { Checkout } from './components/Checkout';
 function App() {
     const [view, setView] = useState('product'); // 'product' or 'cart'
     const [showScrollTop, setShowScrollTop] = useState(false);
-    const [isWarrantyModalOpen, setIsWarrantyModalOpen] = useState(false);
     const [isReturnModalOpen, setIsReturnModalOpen] = useState(false);
     const [isTechModalOpen, setIsTechModalOpen] = useState(false);
-    const [selectedWarranty, setSelectedWarranty] = useState(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,11 +40,8 @@ function App() {
                     <ProductCore />
                     <PricingActions />
                     <PurchasingOptions
-                        onOpenModal={() => setIsWarrantyModalOpen(true)}
                         onOpenReturnModal={() => setIsReturnModalOpen(true)}
                         onOpenTechModal={() => setIsTechModalOpen(true)}
-                        selectedWarranty={selectedWarranty}
-                        onRemoveWarranty={() => setSelectedWarranty(null)}
                     />
                     <ExpertHighlights />
                     <ReviewsSection />
@@ -62,22 +57,15 @@ function App() {
                     </div>
                 </>
             ) : view === 'cart' ? (
-                <Cart navigate={navigate} selectedWarranty={selectedWarranty} setSelectedWarranty={setSelectedWarranty} />
+                <Cart navigate={navigate} />
             ) : (
                 <Checkout
-                    subtotal={69.90 + (selectedWarranty ? parseFloat(`${selectedWarranty.price}.${selectedWarranty.cents}`) : 0)}
+                    subtotal={69.90}
                     navigate={navigate}
                 />
             )}
 
             <Footer />
-
-            <WarrantyModal
-                isOpen={isWarrantyModalOpen}
-                onClose={() => setIsWarrantyModalOpen(false)}
-                selectedPlan={selectedWarranty}
-                onSelectPlan={setSelectedWarranty}
-            />
 
             <ReturnModal
                 isOpen={isReturnModalOpen}

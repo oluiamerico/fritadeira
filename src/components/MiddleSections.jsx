@@ -10,7 +10,7 @@ export const PricingActions = () => (
     </div>
 );
 
-export const PurchasingOptions = ({ onOpenModal, onOpenReturnModal, onOpenTechModal, selectedWarranty, onRemoveWarranty }) => (
+export const PurchasingOptions = ({ onOpenReturnModal, onOpenTechModal }) => (
     <div className="content-padding pt-0">
         <div className="delivery-options card">
             <div className="option-header">
@@ -42,33 +42,7 @@ export const PurchasingOptions = ({ onOpenModal, onOpenReturnModal, onOpenTechMo
             </div>
         </div>
 
-        <div className="warranty-card card blue-tint">
-            {selectedWarranty ? (
-                <div className="selected-warranty-view">
-                    <div className="selected-black-box">
-                        <i className="fa-solid fa-check"></i>
-                    </div>
-                    <div className="selected-info">
-                        <span className="label">Selecionado <strong>Seguro Garantia: {selectedWarranty.title.replace('+ ', '')}</strong></span>
-                        <span className="price"><strong>€{selectedWarranty.price},{selectedWarranty.cents}</strong></span>
-                    </div>
-                    <i className="fa-solid fa-chevron-right ml-auto" onClick={onOpenModal} style={{cursor: 'pointer'}}></i>
-                </div>
-            ) : (
-                <label className="warranty-checkbox">
-                    <input type="checkbox" onChange={onOpenModal} checked={false} />
-                    <span className="checkmark"></span>
-                    <div className="warranty-text">
-                        <span className="add-text">Adicionar <strong>Garantia Extra</strong></span>
-                        <span className="price-text">Desde <strong>€15,99</strong></span>
-                    </div>
-                    <i className="fa-solid fa-chevron-right ml-auto" onClick={onOpenModal} style={{cursor: 'pointer'}}></i>
-                </label>
-            )}
-            <button className="link mt-3 block bg-transparent border-none p-0 text-left cursor-pointer" onClick={onOpenModal}>
-                Ver todas as opções
-            </button>
-        </div>
+
 
         <div className="seller-card">
 

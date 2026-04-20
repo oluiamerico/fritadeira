@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
-export const Cart = ({ navigate, selectedWarranty, setSelectedWarranty }) => {
+export const Cart = ({ navigate }) => {
     const [quantity, setQuantity] = useState(1);
     const productPrice = 69.90;
-    const insurancePrice = selectedWarranty ? parseFloat(`${selectedWarranty.price}.${selectedWarranty.cents}`) : 0;
 
-    const subtotal = (productPrice * quantity) + insurancePrice;
+    const subtotal = (productPrice * quantity);
 
     const handleIncrease = () => setQuantity(q => q + 1);
     const handleDecrease = () => setQuantity(q => Math.max(1, q - 1));
@@ -13,7 +12,7 @@ export const Cart = ({ navigate, selectedWarranty, setSelectedWarranty }) => {
     return (
         <div className="cart-page">
             <header className="cart-header">
-                <h1>O meu carrinho <span>({quantity + (selectedWarranty ? 1 : 0)} artigos)</span></h1>
+                <h1>O meu carrinho <span>({quantity} {quantity === 1 ? 'artigo' : 'artigos'})</span></h1>
             </header>
 
             <section className="cart-items-list">
@@ -54,22 +53,7 @@ export const Cart = ({ navigate, selectedWarranty, setSelectedWarranty }) => {
                     </div>
                 </div>
 
-                {/* Service Item (Worten Resolve) */}
-                {selectedWarranty && (
-                    <div className="worten-resolve-section">
-                        <div className="resolve-logo">
-                            <strong style={{color: '#2856e1', fontSize: '1.2rem'}}>worten</strong>
-                            <span style={{color: '#2856e1', fontSize: '1.2rem'}}>resolve</span>
-                        </div>
-                        <div className="resolve-row">
-                            <div className="resolve-info">
-                                {selectedWarranty.title.includes('Seguro') ? 'Seguro' : 'Seguro Garantia'}: {selectedWarranty.title.replace('+ ', '')}
-                                <div className="resolve-price">€{selectedWarranty.price},{selectedWarranty.cents}</div>
-                            </div>
-                            <a href="#" className="alter-link" onClick={(e) => { e.preventDefault(); setSelectedWarranty(null); }}>Remover</a>
-                        </div>
-                    </div>
-                )}
+
             </section>
 
             <section className="order-summary">
